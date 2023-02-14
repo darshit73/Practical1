@@ -16,13 +16,40 @@ class Program
       
         CreateSourceTable();
         CreateDestinationTable();
-        
-
     }
 
     private static void CreateDestinationTable()
-    {
-          
+    {   
+             List<MigrationRecord> migrationRecords = new List<MigrationRecord>();
+             for (int i = 0; i<=100000; i++)
+             {
+                 MigrationRecord record = ReadMigrationRecord(i);
+                 if (record != null)
+                 {
+                     migrationRecords.Add(record);
+                 }
+             }
+             
+             if (migrationRecords.Count > 0)
+             {
+                 using (SqlConnection connection = new SqlConnection(connectionString))
+                 {
+                     connection.Open();
+
+                     SqlCommand command = new SqlCommand("INSERT INTO DestinationTable (ID, Sum) VALUES (@ID, @Sum)", connection);
+                     command.Parameters.AddWithValue("@ID", 0);
+                     command.Parameters.AddWithValue("@Sum", 0);
+
+                     foreach (MigrationRecord record in migrationRecords)
+                     {
+                         command.Parameters["@ID"].Value = record.Id;
+                         command.Parameters["@Sum"].Value = record.Sum;
+
+                         command.ExecuteNonQuery();
+                         connection.Close();
+                     }
+                 }
+             }
     }
 
     private static void CreateSourceTable()
@@ -36,7 +63,7 @@ class Program
         tbl.Columns.Add(new DataColumn("FirstNumber", typeof(Int32)));  
         tbl.Columns.Add(new DataColumn("SecondNumber", typeof(Int32)));  
       
-        for(int i=0; i<1000000; i++)  
+        for(int i=0; i<10000; i++)  
         {   
             DataRow dr = tbl.NewRow();
             dr["FirstNumber"] = i;
@@ -81,8 +108,39 @@ class Program
         
      
     }
+    static MigrationRecord ReadMigrationRecord(int id)
+    {
+        MigrationRecord record = null;
+        connection.Open();
 
- 
+            SqlCommand command = new SqlCommand($"SELECT * FROM SourceTable WHERE ID = {id}", connection);
+
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    int firstNumber = (int)reader["FirstNumber"];
+                    int secondNumber = (int)reader["SecondNumber"];
+
+                    int sum = firstNumber + secondNumber;
+                    record = new MigrationRecord(id, sum);
+                }
+            }
+
+            return record;
+    }
     
 }
+class MigrationRecord
+{
+    public int Id { get; set; }
+    public int Sum { get; set; }
+
+    public MigrationRecord(int id, int sum)
+    {
+        Id = id;
+        Sum = sum;
+    }
+}
+
 
