@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Darshit Khakhkhar\\RiderProjects\\Practical1\\Practical1\\Practical1.csproj": {}
+    "D:\\Dotnet-Rider\\Practical1\\Practical1\\Practical1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Darshit Khakhkhar\\RiderProjects\\Practical1\\Practical1\\Practical1.csproj": {
+    "D:\\Dotnet-Rider\\Practical1\\Practical1\\Practical1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Darshit Khakhkhar\\RiderProjects\\Practical1\\Practical1\\Practical1.csproj",
+        "projectUniqueName": "D:\\Dotnet-Rider\\Practical1\\Practical1\\Practical1.csproj",
         "projectName": "Practical1",
-        "projectPath": "C:\\Users\\Darshit Khakhkhar\\RiderProjects\\Practical1\\Practical1\\Practical1.csproj",
+        "projectPath": "D:\\Dotnet-Rider\\Practical1\\Practical1\\Practical1.csproj",
         "packagesPath": "C:\\Users\\Darshit Khakhkhar\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Darshit Khakhkhar\\RiderProjects\\Practical1\\Practical1\\obj\\",
+        "outputPath": "D:\\Dotnet-Rider\\Practical1\\Practical1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Darshit Khakhkhar\\AppData\\Roaming\\NuGet\\NuGet.Config",
