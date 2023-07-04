@@ -6,7 +6,7 @@ phases:
       nodejs: 16
     commands:
       - echo "Installing dependencies..."
-      - npm ci
+  
 
   build:
     commands:
